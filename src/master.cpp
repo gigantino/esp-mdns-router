@@ -4,8 +4,8 @@
 #include <ESPmDNS.h>
 #include <WiFi.h>
 
-const char* ssid = WIFI_SSID;
-const char* password = WIFI_PASSWORD;
+const char* ssid = MASTER_SSID;
+const char* password = MASTER_PASSWORD;
 
 AsyncWebServer server(80);
 
@@ -19,13 +19,13 @@ void setup()
     Serial.print("[+] AP created successfully.");
 
     // initialize the mDNS
-    if (!MDNS.begin(WIFI_HOST_NAME)) {
+    if (!MDNS.begin(MASTER_HOST_NAME)) {
         Serial.println("[!] Error setting up mDNS.");
         while (1) {
             delay(1000);
         }
     }
-    String hostName = WIFI_HOST_NAME;
+    String hostName = MASTER_HOST_NAME;
     Serial.println("[+] mDNS set-up as: " + hostName + ".local");
 
     // log the parameters and values sent to the main route using a get request
@@ -42,5 +42,5 @@ void setup()
 
 void loop()
 {
-    // put your main code here, to run repeatedlya
+    // put your main code here, to run repeatedly
 }
